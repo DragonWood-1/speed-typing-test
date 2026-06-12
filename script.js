@@ -101,6 +101,7 @@
     "The observatory opened its dome as the sun set and the great telescope turned toward a galaxy whose light had traveled sixty million years to end its journey that night in the eye of a curious student",
     "The riverbank willows bent all the way to the water in the spring floods and stood back up when the water fell which the old farmer pointed out to his grandchildren as the smartest way to survive hard times",
     "The toy maker tested every wooden duck and pull along dog on the workshop floor before packing them because he said a toy is a promise to a child and he had never once broken a promise",
+    "The hot air balloon rose silently over the valley at dawn and the passengers fell quiet as the patchwork of fields and rivers spread beneath them realizing that the world looks gentler and more connected from above",
   ];
 
   const els = {
