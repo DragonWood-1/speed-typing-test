@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --correct: #4ade80;
+  --incorrect: #f87171;
+  --current-bg: #334155;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 820px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--muted);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.controls label {
+  color: var(--muted);
+}
+
+select,
+button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--current-bg);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+
+button {
+  background: var(--accent);
+  color: #082f49;
+  font-weight: 600;
+  border: none;
+  transition: opacity 0.15s;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+.stats-bar {
+  display: flex;
+  justify-content: space-around;
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.test-area {
+  margin-bottom: 1.5rem;
+}
+
+.passage {
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 1.5rem;
+  font-size: 1.35rem;
+  line-height: 2.2rem;
+  margin-bottom: 1rem;
+  user-select: none;
+  max-height: 11rem;
+  overflow: hidden;
+}
+
+.passage .word {
+  display: inline-block;
+  padding: 0 0.2rem;
+  border-radius: 4px;
+  margin: 0 0.05rem;
+}
+
+.passage .word.current {
+  background: var(--current-bg);
+  outline: 2px solid var(--accent);
+}
+
+.passage .word.current.typo {
+  outline-color: var(--incorrect);
+  background: rgba(248, 113, 113, 0.2);
+}
+
+.passage .word.correct {
+  color: var(--correct);
+}
+
+.passage .word.incorrect {
+  color: var(--incorrect);
+  text-decoration: underline wavy var(--incorrect);
+}
+
+#word-input {
+  width: 100%;
+  font-size: 1.35rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  border: 2px solid var(--current-bg);
+  background: var(--panel);
+  color: var(--text);
+  outline: none;
+}
+
+#word-input:focus {
+  border-color: var(--accent);
+}
+
+#word-input:disabled {
+  opacity: 0.5;
+}
+
+.results {
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.results h2 {
+  margin-bottom: 1rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.result-card {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.result-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.result-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.word-counts {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.misspelled-section {
+  text-align: left;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.misspelled-section h3 {
+  margin-bottom: 0.75rem;
+  color: var(--incorrect);
+}
+
+.misspelled-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 14rem;
+  overflow-y: auto;
+}
+
+.misspelled-list li {
+  font-family: "Consolas", "Menlo", monospace;
+  font-size: 1rem;
+}
+
+.misspelled-list .expected {
+  color: var(--correct);
+}
+
+.misspelled-list .typed {
+  color: var(--incorrect);
+  text-decoration: line-through;
+}
+
+.hidden {
+  display: none;
+}

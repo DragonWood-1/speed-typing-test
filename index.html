@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speed Typing Test</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>⌨️ Speed Typing Test</h1>
+      <p class="subtitle">Type the passage below as fast and accurately as you can. The timer starts on your first keystroke.</p>
+    </header>
+
+    <section class="controls">
+      <label for="duration">Duration:</label>
+      <select id="duration">
+        <option value="30">30 seconds</option>
+        <option value="60" selected>60 seconds</option>
+        <option value="120">120 seconds</option>
+      </select>
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat">
+        <span class="stat-value" id="timer">60</span>
+        <span class="stat-label">seconds left</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="wpm">0</span>
+        <span class="stat-label">WPM</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="accuracy">100%</span>
+        <span class="stat-label">accuracy</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="errors">0</span>
+        <span class="stat-label">misspelled</span>
+      </div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input
+        id="word-input"
+        type="text"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+        placeholder="Start typing here..."
+        aria-label="Type the highlighted word, then press space"
+      >
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card">
+          <span class="result-value" id="final-wpm">0</span>
+          <span class="result-label">Net WPM</span>
+        </div>
+        <div class="result-card">
+          <span class="result-value" id="final-gross-wpm">0</span>
+          <span class="result-label">Gross WPM</span>
+        </div>
+        <div class="result-card">
+          <span class="result-value" id="final-accuracy">0%</span>
+          <span class="result-label">Accuracy</span>
+        </div>
+        <div class="result-card">
+          <span class="result-value" id="final-score">0</span>
+          <span class="result-label">Score</span>
+        </div>
+      </div>
+      <div class="word-counts">
+        <span id="final-correct">0 correct</span> ·
+        <span id="final-incorrect">0 misspelled</span>
+      </div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
