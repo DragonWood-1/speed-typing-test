@@ -4,7 +4,8 @@ A browser-based speed typing test that scores your performance and tracks the ac
 
 ## Features
 
-- **Timed test** — choose 30, 60, or 120 seconds; the timer starts on your first keystroke.
+- **Timed test** — choose 30, 60, 120 seconds, or 5 minutes; the timer starts on your first keystroke.
+- **100 different tests** — a bank of 100 distinct passages, picked at random and chained to fit the chosen duration.
 - **Live stats** — words per minute, accuracy, and misspelled-word count update as you type.
 - **Word-by-word checking** — the current word is highlighted; it turns red in real time if your typing diverges from it.
 - **Scoring**
