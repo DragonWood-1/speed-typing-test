@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1 Minute Typing Test — SpeedType</title>
+  <meta name="description" content="Take a fast 1 minute typing test. Measure your WPM and accuracy in 60 seconds.">
+  <link rel="stylesheet" href="style.css">
+  <script>window.TYPING_CONFIG = { defaultDuration: 60, hideDurationSelector: true };</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>1 Minute Typing Test</h1>
+      <p class="subtitle">Type as many words as you can in 60 seconds. The timer starts on your first keystroke.</p>
+    </header>
+
+    <section class="controls">
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat"><span class="stat-value" id="timer">60</span><span class="stat-label">seconds left</span></div>
+      <div class="stat"><span class="stat-value" id="wpm">0</span><span class="stat-label">WPM</span></div>
+      <div class="stat"><span class="stat-value" id="accuracy">100%</span><span class="stat-label">accuracy</span></div>
+      <div class="stat"><span class="stat-value" id="errors">0</span><span class="stat-label">misspelled</span></div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input id="word-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Start typing here..." aria-label="Type the highlighted word, then press space">
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card"><span class="result-value" id="final-wpm">0</span><span class="result-label">Net WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-gross-wpm">0</span><span class="result-label">Gross WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-accuracy">0%</span><span class="result-label">Accuracy</span></div>
+        <div class="result-card"><span class="result-value" id="final-score">0</span><span class="result-label">Score</span></div>
+      </div>
+      <div class="word-counts"><span id="final-correct">0 correct</span> · <span id="final-incorrect">0 misspelled</span></div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+
+    <section class="info-section">
+      <h2>About the 1 Minute Typing Test</h2>
+      <p>The 1 minute typing test is the most popular benchmark for measuring typing speed. In just 60 seconds you get a clear snapshot of your words per minute (WPM) without the fatigue that comes from longer sessions.</p>
+      <h3>What is a good 1 minute WPM?</h3>
+      <ul>
+        <li><strong>Beginner:</strong> 20–40 WPM</li>
+        <li><strong>Average:</strong> 40–60 WPM</li>
+        <li><strong>Proficient:</strong> 60–80 WPM</li>
+        <li><strong>Advanced:</strong> 80–100 WPM</li>
+        <li><strong>Expert:</strong> 100+ WPM</li>
+      </ul>
+      <h3>Tips to improve in 60 seconds</h3>
+      <p>Focus on accuracy over speed — net WPM penalizes misspelled words. Keep your eyes on the passage, not your fingers, and use all ten fingers with proper home-row positioning.</p>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

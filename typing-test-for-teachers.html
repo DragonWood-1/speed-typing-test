@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Test for Teachers — SpeedType</title>
+  <meta name="description" content="Typing test with educational and pedagogical passages designed for teachers and education professionals.">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.TYPING_CONFIG = {
+      defaultDuration: 60,
+      passages: [
+        "Differentiated instruction recognizes that students learn at different paces and through different modes and challenges teachers to adapt their lessons to meet the diverse needs of every learner in the classroom through varied content process and product",
+        "Formative assessment is the ongoing process of gathering evidence about student learning during instruction so that teachers can adjust their strategies in real time rather than waiting until a final exam to discover gaps in understanding",
+        "Building genuine relationships with students is foundational to effective teaching because students who feel safe respected and genuinely valued in their classroom are far more willing to take intellectual risks and engage deeply with challenging material",
+        "Project based learning engages students in extended investigations of authentic real world questions and problems developing critical thinking collaboration communication and creativity while students build content knowledge through purposeful meaningful work",
+        "Effective classroom management is not about control but about cultivating a learning community where all students feel safe and motivated clear expectations consistent routines strong relationships and respectful interactions form the bedrock of this environment",
+        "Professional development is most powerful when it is ongoing job embedded and directly connected to what teachers encounter in their classrooms isolated one day workshops rarely change practice but sustained collaborative learning in professional communities does",
+        "Universal design for learning provides a framework for creating lessons that are accessible and engaging for all students from the start by offering multiple means of representation engagement and expression rather than retrofitting accommodations after the fact",
+        "Research on retrieval practice demonstrates that students retain information better when they are regularly asked to recall it from memory rather than simply reviewing notes because the effortful act of retrieval strengthens long term memory consolidation",
+        "Culturally responsive teaching connects academic content to students cultural backgrounds and lived experiences helping every student see themselves reflected in the curriculum and making learning more relevant engaging and equitable across diverse classrooms",
+        "Socratic questioning guides students toward deeper understanding through carefully sequenced open ended questions rather than telling them the answer teachers who master this technique develop students capacity for independent critical and creative thinking",
+        "The flipped classroom model moves direct instruction to video or readings outside of class so that face to face time can be devoted to active learning practice collaborative problem solving and meaningful teacher student interaction and feedback",
+        "Research consistently shows that parent and family engagement is one of the strongest predictors of student success teachers who communicate proactively and positively with families create a powerful partnership that extends learning beyond the classroom walls",
+        "Growth mindset theory developed by Carol Dweck shows that students who believe their intelligence and abilities can grow through effort good strategies and guidance from others achieve significantly more than those who see ability as a fixed innate trait",
+        "Scaffolding provides temporary structured support to help students accomplish tasks they cannot yet complete independently and the ultimate goal of scaffolding is the gradual release of responsibility as students build confidence competence and autonomy",
+        "Student engagement in its fullest sense goes well beyond compliance and surface participation it encompasses the emotional investment cognitive effort and behavioral commitment students make to their learning as they take ownership of their academic growth",
+        "Explicit vocabulary instruction is essential for reading comprehension and academic success because students need deep understanding of key terms not just superficial familiarity and teachers who teach vocabulary in multiple contexts and through active use see the best results",
+        "Peer collaboration structures such as think pair share structured academic controversy and cooperative learning groups give students the opportunity to articulate their thinking hear different perspectives and deepen understanding through accountable talk",
+        "Assessment for learning means using evidence about student understanding to inform instructional decisions in real time it is distinct from assessment of learning which measures achievement at the end of a unit for grading or accountability purposes",
+        "Trauma informed teaching recognizes that many students carry significant stressors into the classroom and that behaviors which appear defiant or disengaged often reflect unmet needs teachers who respond with empathy and predictability create the safety students need to learn",
+        "Reflective practice is the habit of thoughtfully examining one's own teaching decisions assumptions and outcomes in order to improve continuously teachers who reflect systematically learn as much from their own classroom experience as from any external training",
+      ],
+    };
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>Typing Test for Teachers</h1>
+      <p class="subtitle">Pedagogical passages for education professionals. Practice typing while reading about the craft of teaching.</p>
+    </header>
+
+    <section class="controls">
+      <label for="duration">Duration:</label>
+      <select id="duration">
+        <option value="60" selected>1 minute</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
+        <option value="300">5 minutes</option>
+      </select>
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat"><span class="stat-value" id="timer">60</span><span class="stat-label">seconds left</span></div>
+      <div class="stat"><span class="stat-value" id="wpm">0</span><span class="stat-label">WPM</span></div>
+      <div class="stat"><span class="stat-value" id="accuracy">100%</span><span class="stat-label">accuracy</span></div>
+      <div class="stat"><span class="stat-value" id="errors">0</span><span class="stat-label">misspelled</span></div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input id="word-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Start typing here..." aria-label="Type the highlighted word, then press space">
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card"><span class="result-value" id="final-wpm">0</span><span class="result-label">Net WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-gross-wpm">0</span><span class="result-label">Gross WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-accuracy">0%</span><span class="result-label">Accuracy</span></div>
+        <div class="result-card"><span class="result-value" id="final-score">0</span><span class="result-label">Score</span></div>
+      </div>
+      <div class="word-counts"><span id="final-correct">0 correct</span> · <span id="final-incorrect">0 misspelled</span></div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+
+    <section class="info-section">
+      <h2>Typing Skills for Educators</h2>
+      <p>Teachers type constantly — lesson plans, feedback, emails, reports, and digital assessments. Faster, more accurate typing frees up valuable time and mental energy for what matters most: teaching.</p>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

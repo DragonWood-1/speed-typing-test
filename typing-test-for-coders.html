@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Test for Coders — SpeedType</title>
+  <meta name="description" content="Typing test for programmers and developers. Passages about programming concepts, algorithms, and software development.">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.TYPING_CONFIG = {
+      defaultDuration: 60,
+      passages: [
+        "A variable is a named container that stores a value in your program and you can read or change that value as the code executes giving meaningful names to variables makes your code far easier to read understand and maintain over time",
+        "Functions are reusable blocks of code that perform a specific task you define a function once give it a name and then call it from anywhere in your program avoiding repetition and making your codebase easier to test debug and update",
+        "Version control systems like Git track every change made to a codebase over time allowing you to see the full history of a project revert to earlier versions compare differences and collaborate with other developers without overwriting each other's work",
+        "An algorithm is a precise step by step set of instructions for solving a problem or accomplishing a task evaluating algorithms on their time complexity and space complexity helps developers choose the most efficient approach for a given situation",
+        "Object oriented programming organizes code around objects that bundle related data and behavior together into a single unit making large systems easier to model reason about extend and maintain through concepts like encapsulation inheritance and polymorphism",
+        "Debugging is the craft of finding and eliminating errors in your code skilled developers spend as much time debugging as writing new code and learning to read error messages trace execution step by step and isolate variables is an essential skill",
+        "The web is built on a client server model where browsers send HTTP requests to servers which respond with HTML CSS and JavaScript files that browsers then parse render and execute to display the websites and applications users interact with daily",
+        "Arrays allow you to store an ordered collection of values in a single variable and access each element by its numeric index which starts at zero in most programming languages making them essential for working with lists of data efficiently",
+        "A loop repeats a block of code until a specified condition is met the two most common types are the for loop which runs a set number of times and the while loop which continues as long as a condition remains true",
+        "Responsive web design ensures that layouts look good and function well on all screen sizes by using fluid grids flexible images and CSS media queries that apply different styles based on the viewport dimensions of the device being used",
+        "An API or application programming interface defines how different software systems communicate with each other by specifying the requests a service accepts and the responses it returns allowing developers to build on top of existing functionality without knowing internal details",
+        "Relational databases store data in structured tables with rows and columns and use a query language called SQL to retrieve filter sort and join data across multiple tables making it possible to answer complex questions about large datasets efficiently",
+        "Machine learning enables computers to identify patterns in data and make predictions without being explicitly programmed with rules the model learns from training data and then applies what it learned to new inputs it has never encountered before",
+        "The command line interface lets you interact with your operating system and tools by typing text commands knowing a core set of commands for navigating the filesystem creating files and running scripts dramatically speeds up a developer workflow",
+        "Writing automated tests is one of the highest value habits a developer can build unit tests verify that individual functions work correctly integration tests confirm that components work together and end to end tests simulate real user behavior across the full application",
+        "Recursion is a technique where a function calls itself with a smaller or simpler version of the original problem continuing until it reaches a base case that can be solved directly classic examples include factorial calculation Fibonacci sequences and tree traversal",
+        "Memory management refers to how a program allocates and frees memory during execution languages like C require developers to manage memory manually while languages like Python and JavaScript use garbage collection to automatically reclaim memory that is no longer in use",
+        "The single responsibility principle states that each module class or function in a codebase should have one clear purpose and should only need to change when that purpose changes keeping concerns separated makes code easier to understand test and modify",
+        "Concurrency allows multiple operations to make progress at the same time which is essential for building responsive applications and efficient servers but it also introduces challenges like race conditions deadlocks and the need for careful synchronization of shared state",
+        "Code review is a collaborative practice where developers read and comment on each other's code before it is merged catching bugs improving design consistency sharing knowledge and gradually raising the overall quality and maintainability of the codebase over time",
+      ],
+    };
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>Typing Test for Coders</h1>
+      <p class="subtitle">Passages about programming, algorithms, and software engineering. Build speed in the language you live in.</p>
+    </header>
+
+    <section class="controls">
+      <label for="duration">Duration:</label>
+      <select id="duration">
+        <option value="60" selected>1 minute</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
+        <option value="300">5 minutes</option>
+      </select>
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat"><span class="stat-value" id="timer">60</span><span class="stat-label">seconds left</span></div>
+      <div class="stat"><span class="stat-value" id="wpm">0</span><span class="stat-label">WPM</span></div>
+      <div class="stat"><span class="stat-value" id="accuracy">100%</span><span class="stat-label">accuracy</span></div>
+      <div class="stat"><span class="stat-value" id="errors">0</span><span class="stat-label">misspelled</span></div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input id="word-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Start typing here..." aria-label="Type the highlighted word, then press space">
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card"><span class="result-value" id="final-wpm">0</span><span class="result-label">Net WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-gross-wpm">0</span><span class="result-label">Gross WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-accuracy">0%</span><span class="result-label">Accuracy</span></div>
+        <div class="result-card"><span class="result-value" id="final-score">0</span><span class="result-label">Score</span></div>
+      </div>
+      <div class="word-counts"><span id="final-correct">0 correct</span> · <span id="final-incorrect">0 misspelled</span></div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+
+    <section class="info-section">
+      <h2>Typing Speed for Developers</h2>
+      <p>A developer who types 80 WPM instead of 40 WPM doesn't write twice as much code — but they do spend less cognitive energy on the physical act of typing, leaving more bandwidth for problem solving, design, and debugging.</p>
+      <h3>What to practice as a developer</h3>
+      <ul>
+        <li>Common programming terms: function, variable, iteration, recursion</li>
+        <li>Symbol fluency: brackets, underscores, colons, and pipes</li>
+        <li>Touch typing to reduce context switching between screen and keyboard</li>
+      </ul>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 (() => {
   "use strict";
 
+  const CONFIG = window.TYPING_CONFIG || {};
+
   const PASSAGES = [
     "The quick brown fox jumps over the lazy dog while the bright morning sun rises slowly above the quiet hills and the small town below begins to wake with the gentle sounds of daily life as people open their windows to greet another beautiful day full of promise and simple joys",
     "Learning to type quickly takes patience and steady practice because your fingers must build muscle memory over time so keep your eyes on the screen instead of the keyboard and focus on accuracy first since speed will naturally follow once your hands know exactly where every letter lives",
@@ -104,6 +106,13 @@
     "The hot air balloon rose silently over the valley at dawn and the passengers fell quiet as the patchwork of fields and rivers spread beneath them realizing that the world looks gentler and more connected from above",
   ];
 
+  const ACTIVE_PASSAGES = CONFIG.passages || PASSAGES;
+
+  function formatTime(s) {
+    if (s < 60) return String(s);
+    return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+  }
+
   const els = {
     duration: document.getElementById("duration"),
     restartBtn: document.getElementById("restart-btn"),
@@ -140,11 +149,10 @@
   };
 
   function pickPassage() {
-    // Enough words that even a 150 WPM typist never runs out.
     const minWords = Math.max(200, Math.ceil((state.duration / 60) * 150));
-    let text = PASSAGES[Math.floor(Math.random() * PASSAGES.length)];
+    let text = ACTIVE_PASSAGES[Math.floor(Math.random() * ACTIVE_PASSAGES.length)];
     while (text.split(" ").length < minWords) {
-      text += " " + PASSAGES[Math.floor(Math.random() * PASSAGES.length)];
+      text += " " + ACTIVE_PASSAGES[Math.floor(Math.random() * ACTIVE_PASSAGES.length)];
     }
     return text.split(" ");
   }
@@ -170,7 +178,7 @@
     state.started = true;
     state.timerId = setInterval(() => {
       state.timeLeft -= 1;
-      els.timer.textContent = state.timeLeft;
+      els.timer.textContent = formatTime(state.timeLeft);
       updateLiveStats();
       if (state.timeLeft <= 0) finishTest();
     }, 1000);
@@ -280,7 +288,7 @@
 
   function resetTest() {
     clearInterval(state.timerId);
-    state.duration = parseInt(els.duration.value, 10);
+    state.duration = els.duration ? parseInt(els.duration.value, 10) : (CONFIG.defaultDuration || 60);
     state.words = pickPassage();
     state.wordIndex = 0;
     state.correctWords = 0;
@@ -292,7 +300,7 @@
     state.started = false;
     state.finished = false;
 
-    els.timer.textContent = state.timeLeft;
+    els.timer.textContent = formatTime(state.timeLeft);
     els.wpm.textContent = "0";
     els.accuracy.textContent = "100%";
     els.errors.textContent = "0";
@@ -327,9 +335,19 @@
     }
   });
 
-  els.duration.addEventListener("change", resetTest);
+  if (els.duration) els.duration.addEventListener("change", resetTest);
   els.restartBtn.addEventListener("click", resetTest);
   els.tryAgainBtn.addEventListener("click", resetTest);
 
+  if (CONFIG.hideDurationSelector && els.duration) {
+    const ctrl = els.duration.closest(".controls");
+    if (ctrl) {
+      els.duration.style.display = "none";
+      const lbl = ctrl.querySelector("label");
+      if (lbl) lbl.style.display = "none";
+    }
+  }
+
   resetTest();
+  window.resetTypingTest = resetTest;
 })();

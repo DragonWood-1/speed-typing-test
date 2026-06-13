@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Games — Word Rush — SpeedType</title>
+  <meta name="description" content="Play Word Rush — a fast-paced typing game where you race against the clock to type words before time runs out.">
+  <link rel="stylesheet" href="style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>Word Rush</h1>
+      <p class="subtitle">Type each word before the timer runs out. 3 lives — don't miss! Combos multiply your score.</p>
+    </header>
+
+    <div class="game-meta" id="game-meta">
+      <div class="game-meta-stat"><span class="game-meta-value" id="g-score">0</span><span class="game-meta-label">Score</span></div>
+      <div class="game-meta-stat"><span class="game-meta-value" id="g-combo">0×</span><span class="game-meta-label">Combo</span></div>
+      <div class="game-meta-stat"><span class="game-meta-value" id="g-progress">0/50</span><span class="game-meta-label">Words</span></div>
+    </div>
+
+    <div class="game-arena" id="game-arena">
+      <div class="game-hearts" id="g-hearts">♥ ♥ ♥</div>
+      <div class="game-word-display" id="g-word">Press Start</div>
+      <div class="game-timer-bar"><div class="game-timer-fill" id="g-fill" style="width:100%"></div></div>
+    </div>
+
+    <div style="text-align:center; margin-bottom:1.5rem; display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
+      <select id="g-difficulty" style="font-size:1rem;padding:0.5rem 1rem;border-radius:8px;border:1px solid var(--current-bg);background:var(--panel);color:var(--text);">
+        <option value="easy">Easy (5 sec)</option>
+        <option value="medium" selected>Medium (3 sec)</option>
+        <option value="hard">Hard (2 sec)</option>
+      </select>
+      <button id="g-start" style="font-size:1rem;padding:0.5rem 1.5rem;border-radius:8px;border:none;background:var(--accent);color:#082f49;font-weight:600;cursor:pointer;">Start Game</button>
+    </div>
+
+    <div style="text-align:center;">
+      <input id="g-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+        placeholder="Type here..."
+        style="font-size:1.35rem;padding:0.85rem 1.25rem;border-radius:12px;border:2px solid var(--current-bg);background:var(--panel);color:var(--text);width:100%;outline:none;box-sizing:border-box;"
+        disabled>
+    </div>
+
+    <div id="g-results" class="results hidden" style="margin-top:1.5rem;">
+      <h2>Game Over!</h2>
+      <div class="results-grid">
+        <div class="result-card"><span class="result-value" id="gr-score">0</span><span class="result-label">Final Score</span></div>
+        <div class="result-card"><span class="result-value" id="gr-correct">0</span><span class="result-label">Correct</span></div>
+        <div class="result-card"><span class="result-value" id="gr-missed">0</span><span class="result-label">Missed</span></div>
+        <div class="result-card"><span class="result-value" id="gr-maxcombo">0×</span><span class="result-label">Best Combo</span></div>
+      </div>
+      <button id="g-restart" type="button">Play Again</button>
+    </div>
+
+    <section class="info-section">
+      <h2>How to Play Word Rush</h2>
+      <ul>
+        <li>A word appears — type it and press <strong>Space</strong> or <strong>Enter</strong> to submit</li>
+        <li>Type fast! Each word has a time limit shown by the shrinking bar</li>
+        <li>Miss a word and you lose one <strong>♥ life</strong> — you have three</li>
+        <li>Build a <strong>combo</strong> by typing consecutive words correctly — it multiplies your score!</li>
+        <li>Game ends when all 50 words are done or you lose all lives</li>
+      </ul>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script>
+  (() => {
+    "use strict";
+
+    const WORD_BANK = [
+      "apple","brave","chair","dance","eagle","fancy","grape","happy","ivory","jumpy",
+      "kneel","lemon","mango","north","opera","piano","queen","river","stone","tiger",
+      "ultra","vivid","water","xenon","yacht","zebra","above","beach","cabin","diary",
+      "earth","flame","globe","house","image","joker","knife","light","money","night",
+      "ocean","paper","quiet","radio","sugar","tower","under","vivid","wheat","extra",
+      "azure","blend","crisp","drift","elite","forge","glide","haste","inter","joist",
+      "karma","lunar","magic","novel","orbit","prose","quest","renew","scope","thrive",
+      "unite","vault","whirl","xenon","young","zonal","angle","birth","coast","depth",
+      "event","feast","grant","heart","ideal","jewel","knack","lobby","moral","nerve",
+      "onset","phase","quirk","reach","shift","track","ultra","vital","watch","yield",
+      "adapt","boost","clear","drive","eager","focus","guard","honor","input","judge",
+      "learn","merit","noble","offer","pride","raise","sharp","trend","usage","voice",
+      "weigh","exact","yield","amaze","build","craft","daily","essay","fresh","grace",
+    ];
+
+    const TIMING = { easy: 5000, medium: 3000, hard: 2000 };
+
+    let words = [], idx = 0, score = 0, combo = 0, maxCombo = 0,
+        lives = 3, timerId = null, fillId = null, started = false,
+        wordTime = 3000, wordStart = 0, missed = 0, correct = 0;
+
+    const els = {
+      score:   document.getElementById("g-score"),
+      combo:   document.getElementById("g-combo"),
+      prog:    document.getElementById("g-progress"),
+      hearts:  document.getElementById("g-hearts"),
+      word:    document.getElementById("g-word"),
+      fill:    document.getElementById("g-fill"),
+      input:   document.getElementById("g-input"),
+      start:   document.getElementById("g-start"),
+      diff:    document.getElementById("g-difficulty"),
+      results: document.getElementById("g-results"),
+      grScore: document.getElementById("gr-score"),
+      grCor:   document.getElementById("gr-correct"),
+      grMiss:  document.getElementById("gr-missed"),
+      grCombo: document.getElementById("gr-maxcombo"),
+      restart: document.getElementById("g-restart"),
+    };
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function heartsStr(n) { return "♥ ".repeat(n).trim() || "✕"; }
+
+    function updateHUD() {
+      els.score.textContent  = score;
+      els.combo.textContent  = combo + "×";
+      els.prog.textContent   = idx + "/" + words.length;
+      els.hearts.textContent = heartsStr(lives);
+    }
+
+    function startFill() {
+      wordStart = Date.now();
+      clearInterval(fillId);
+      fillId = setInterval(() => {
+        const pct = Math.max(0, 1 - (Date.now() - wordStart) / wordTime);
+        els.fill.style.width = (pct * 100) + "%";
+        els.fill.classList.toggle("urgent", pct < 0.25);
+      }, 50);
+    }
+
+    function showWord() {
+      if (idx >= words.length || lives <= 0) { endGame(); return; }
+      els.word.textContent = words[idx];
+      els.word.className = "game-word-display";
+      els.input.value = "";
+      startFill();
+      clearTimeout(timerId);
+      timerId = setTimeout(() => missWord(), wordTime);
+    }
+
+    function missWord() {
+      lives -= 1;
+      missed += 1;
+      combo = 0;
+      els.word.classList.add("gw-bad");
+      clearInterval(fillId);
+      els.fill.style.width = "0%";
+      idx++;
+      updateHUD();
+      if (lives <= 0) { endGame(); return; }
+      setTimeout(showWord, 500);
+    }
+
+    function submitWord(typed) {
+      clearTimeout(timerId);
+      clearInterval(fillId);
+      const expected = words[idx];
+      if (typed === expected) {
+        combo++;
+        correct++;
+        if (combo > maxCombo) maxCombo = combo;
+        const multiplier = combo >= 6 ? 3 : combo >= 3 ? 2 : 1;
+        score += 10 * multiplier;
+        els.word.classList.add("gw-ok");
+        els.fill.style.width = "100%";
+      } else {
+        lives -= 1;
+        missed += 1;
+        combo = 0;
+        els.word.classList.add("gw-bad");
+        els.fill.style.width = "0%";
+      }
+      idx++;
+      updateHUD();
+      if (idx >= words.length || lives <= 0) { setTimeout(endGame, 400); return; }
+      setTimeout(showWord, 300);
+    }
+
+    function startGame() {
+      wordTime = TIMING[els.diff.value] || 3000;
+      words = shuffle(WORD_BANK).slice(0, 50);
+      idx = score = combo = maxCombo = missed = correct = 0;
+      lives = 3;
+      started = true;
+      els.results.classList.add("hidden");
+      els.input.disabled = false;
+      els.input.focus();
+      updateHUD();
+      showWord();
+    }
+
+    function endGame() {
+      clearTimeout(timerId);
+      clearInterval(fillId);
+      started = false;
+      els.input.disabled = true;
+      els.word.textContent = "Game Over";
+      els.word.className = "game-word-display";
+      els.grScore.textContent  = score;
+      els.grCor.textContent    = correct;
+      els.grMiss.textContent   = missed;
+      els.grCombo.textContent  = maxCombo + "×";
+      els.results.classList.remove("hidden");
+      els.results.scrollIntoView({ behavior: "smooth" });
+    }
+
+    els.input.addEventListener("input", () => {
+      if (!started) return;
+      const v = els.input.value;
+      if (v.includes(" ") || v.includes("\n")) {
+        const t = v.trim();
+        els.input.value = "";
+        if (t) submitWord(t);
+      }
+    });
+
+    els.input.addEventListener("keydown", e => {
+      if (e.key === "Enter" && started) {
+        const t = els.input.value.trim();
+        els.input.value = "";
+        if (t) submitWord(t);
+      }
+    });
+
+    els.start.addEventListener("click", startGame);
+    els.restart.addEventListener("click", startGame);
+  })();
+  </script>
+</body>
+</html>

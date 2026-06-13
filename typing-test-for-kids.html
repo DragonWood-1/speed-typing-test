@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Test for Kids — SpeedType</title>
+  <meta name="description" content="A fun and easy typing test for kids. Simple words, colorful feedback, and a friendly timer to build typing confidence.">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.TYPING_CONFIG = {
+      defaultDuration: 60,
+      passages: [
+        "The cat sat on the warm mat by the fire and closed his eyes the room was very quiet and the soft rug felt nice under his paws soon he fell fast asleep and began to dream about chasing birds and fish in the sunny yard",
+        "My dog loves to run in the park every morning we play fetch with his red ball he jumps high and catches it in the air then brings it back to me and wags his tail very fast because he is so happy",
+        "The sun was big and bright yellow in the sky the clouds were white and puffy like soft cotton the grass was green the flowers were pink and red and purple and the birds sang sweet songs all day long",
+        "Today at school we learned about frogs they start as tiny eggs in a pond then become tadpoles with long tails then they grow four legs and hop away as frogs it is called a life cycle and it is very cool",
+        "I like to eat apples oranges and bananas for my snack my very favorite fruit is watermelon because it is sweet and juicy and red inside with little black seeds that you have to spit out when you eat it",
+        "The snow fell softly from the gray sky all through the night by morning everything outside was white and sparkly we put on our warm coats boots and mittens and went out to build a big snowman in the front yard",
+        "Butterflies are beautiful insects that start as tiny eggs on green leaves they hatch into fuzzy caterpillars that eat lots of leaves to grow big then they make a cocoon and come out as colorful butterflies with wings",
+        "My best friend and I love to ride our bikes to the park we race down the big hill and laugh when the wind blows in our hair then we stop for strawberry ice cream on the walk home together",
+        "The ocean is very big and very deep and full of amazing sea creatures like colorful fish dolphins friendly seals big sharks and giant whales the water is salty and the waves crash loudly on the sandy beach all day",
+        "Every morning I wake up and brush my teeth wash my face and sit down to eat breakfast mom makes scrambled eggs toast and a big glass of cold orange juice then I grab my backpack and catch the yellow school bus",
+        "In the spring the trees grow bright new green leaves and flowers bloom in every garden bees buzz around collecting nectar from the flowers and birds sit in the branches singing songs and building cozy nests for their eggs",
+        "Our classroom has a pet hamster named Peanut who lives in a cage with a little wheel he loves to run on we take turns giving him carrots and pieces of lettuce and cleaning his cage so it stays nice and tidy",
+        "The library is my favorite place because it has so many books about every topic you can think of I love reading books about dinosaurs planets outer space and exciting adventure stories with brave kids who solve big mysteries",
+        "Pizza night is my favorite night of the whole week because we all get to pick our own toppings I always choose extra cheese and pepperoni my little brother just wants plain cheese and my sister piles on lots of vegetables",
+        "A rainbow has seven beautiful colors in order which are red orange yellow green blue indigo and violet you can see a rainbow after it rains when sunshine passes through tiny drops of water floating in the air above the ground",
+        "My family went to the zoo on Saturday and we saw lions tigers tall giraffes funny monkeys slow turtles and a huge elephant that sprayed water from its long trunk the elephant made everyone laugh and squeal with delight",
+        "When it rains I like to sit by the window and watch the drops race down the glass I pick my favorite drop and cheer for it to reach the bottom first the pitter patter sound of rain on the roof is my favorite cozy sound",
+        "Helping in the garden is one of my favorite things to do in summer we plant tomato seeds water them every day and watch them slowly grow into tall plants with bright red tomatoes that taste so good when they are warm from the sun",
+        "My teacher reads us a story every afternoon after lunch we all sit on the big colorful rug and listen quietly she does different funny voices for each character and sometimes we guess what will happen next before she turns the page",
+        "The stars come out at night one by one until the whole sky is full of tiny sparkling lights on clear nights you can see the big dipper and other shapes made of stars called constellations that people named long long ago",
+      ],
+    };
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>Typing Test for Kids</h1>
+      <p class="subtitle">Easy words, simple sentences, and friendly feedback. Great for beginners and young learners!</p>
+    </header>
+
+    <section class="controls">
+      <label for="duration">Duration:</label>
+      <select id="duration">
+        <option value="30">30 seconds</option>
+        <option value="60" selected>1 minute</option>
+        <option value="120">2 minutes</option>
+      </select>
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat"><span class="stat-value" id="timer">60</span><span class="stat-label">seconds left</span></div>
+      <div class="stat"><span class="stat-value" id="wpm">0</span><span class="stat-label">WPM</span></div>
+      <div class="stat"><span class="stat-value" id="accuracy">100%</span><span class="stat-label">accuracy</span></div>
+      <div class="stat"><span class="stat-value" id="errors">0</span><span class="stat-label">misspelled</span></div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input id="word-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Start typing here..." aria-label="Type the highlighted word, then press space">
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card"><span class="result-value" id="final-wpm">0</span><span class="result-label">Net WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-gross-wpm">0</span><span class="result-label">Gross WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-accuracy">0%</span><span class="result-label">Accuracy</span></div>
+        <div class="result-card"><span class="result-value" id="final-score">0</span><span class="result-label">Score</span></div>
+      </div>
+      <div class="word-counts"><span id="final-correct">0 correct</span> · <span id="final-incorrect">0 misspelled</span></div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+
+    <section class="info-section">
+      <h2>Typing Tips for Kids</h2>
+      <p>Learning to type well is a superpower! Here are some tips to help you get faster:</p>
+      <ul>
+        <li>Put your fingers on the <strong>home row</strong>: left fingers on A S D F, right fingers on J K L ;</li>
+        <li>Don't look at your keyboard — keep your eyes on the screen</li>
+        <li>It's okay to go slow at first. Accuracy comes before speed!</li>
+        <li>Practice a little every day and you will improve fast</li>
+        <li>Try to use all your fingers, not just your two pointer fingers</li>
+      </ul>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

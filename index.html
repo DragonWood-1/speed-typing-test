@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Speed Typing Test</title>
+  <title>Free Typing Speed Test — SpeedType</title>
+  <meta name="description" content="Take a free typing speed test and measure your WPM. Track accuracy, see misspelled words, and improve your typing skills.">
   <link rel="stylesheet" href="style.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098"
      crossorigin="anonymous"></script>
 </head>
 <body>
+  <nav id="site-nav"></nav>
   <main class="container">
     <header>
       <h1>⌨️ Speed Typing Test</h1>
@@ -20,8 +22,10 @@
       <select id="duration">
         <option value="30">30 seconds</option>
         <option value="60" selected>60 seconds</option>
-        <option value="120">120 seconds</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
         <option value="300">5 minutes</option>
+        <option value="600">10 minutes</option>
       </select>
       <button id="restart-btn" type="button">New Test</button>
     </section>
@@ -91,6 +95,7 @@
     </section>
   </main>
 
+  <script src="nav.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
