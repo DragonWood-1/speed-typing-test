@@ -398,6 +398,81 @@ button:hover {
 .info-section p  { margin-bottom: 0.75rem; }
 .info-section ul { margin: 0.4rem 0 0.75rem 1.25rem; }
 .info-section ul li { margin-bottom: 0.25rem; }
+.info-section a { color: var(--accent); text-decoration: none; }
+.info-section a:hover { text-decoration: underline; }
+
+/* ── Article / content pages ─────────────────────────────────────────────── */
+.article {
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 1.75rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.article h2 { color: var(--text); font-size: 1.35rem; margin: 1.75rem 0 0.75rem; }
+.article h2:first-child { margin-top: 0; }
+.article h3 { color: var(--text); font-size: 1.1rem; margin: 1.25rem 0 0.5rem; }
+.article p { margin-bottom: 1rem; }
+.article ul, .article ol { margin: 0.5rem 0 1rem 1.5rem; }
+.article li { margin-bottom: 0.4rem; }
+.article a { color: var(--accent); text-decoration: none; }
+.article a:hover { text-decoration: underline; }
+.article strong { color: var(--text); }
+
+.faq-item { border-top: 1px solid var(--current-bg); padding: 1rem 0; }
+.faq-item:first-of-type { border-top: none; }
+.faq-item h3 { margin-top: 0; }
+
+/* ── Site footer ─────────────────────────────────────────────────────────── */
+#site-footer {
+  width: 100%;
+  background: var(--panel);
+  border-top: 1px solid var(--current-bg);
+  margin-top: auto;
+  padding: 2.5rem 1rem 1.5rem;
+}
+
+.fc {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.fcol { display: flex; flex-direction: column; gap: 0.4rem; }
+.fcol h4 {
+  color: var(--text);
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.fcol a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.15s;
+}
+.fcol a:hover { color: var(--accent); }
+
+.fbottom {
+  max-width: 900px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--current-bg);
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  text-align: center;
+}
+.fbottom .fcopy { margin-top: 0.75rem; opacity: 0.7; }
+
+@media (max-width: 680px) {
+  .fc { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .article { padding: 1.25rem; }
+  .article h2 { font-size: 1.2rem; }
+}
 
 /* ── Mode selector pills ─────────────────────────────────────────────────── */
 .mode-selector {
