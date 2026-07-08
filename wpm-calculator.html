@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WPM Calculator — SpeedType</title>
+  <meta name="description" content="Free WPM calculator. Enter words typed, time, and errors to calculate your net and gross words per minute.">
+  <link rel="stylesheet" href="style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>WPM Calculator</h1>
+      <p class="subtitle">Enter your typing stats to calculate your exact words per minute — gross and net.</p>
+    </header>
+
+    <div class="calc-card">
+      <div class="form-group">
+        <label for="total-chars">Total characters typed (including spaces)</label>
+        <input type="number" id="total-chars" min="0" placeholder="e.g. 1250">
+      </div>
+      <div class="form-group">
+        <label for="minutes">Time elapsed (minutes)</label>
+        <input type="number" id="minutes" min="0" step="0.5" placeholder="e.g. 1 or 1.5">
+      </div>
+      <div class="form-group">
+        <label for="error-words">Number of incorrect words</label>
+        <input type="number" id="error-words" min="0" placeholder="e.g. 5">
+      </div>
+      <button id="calc-btn" type="button">Calculate WPM</button>
+
+      <div class="calc-result" id="calc-result" style="display:none">
+        <span class="calc-result-value" id="net-wpm-out">0</span>
+        <span class="calc-result-label">Net WPM</span>
+        <div class="calc-breakdown">
+          <div class="result-card"><span class="result-value" id="gross-wpm-out">0</span><span class="result-label">Gross WPM</span></div>
+          <div class="result-card"><span class="result-value" id="words-out">0</span><span class="result-label">Total Words</span></div>
+          <div class="result-card"><span class="result-value" id="acc-out">0%</span><span class="result-label">Accuracy</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="info-section">
+      <h2>How WPM is Calculated</h2>
+      <p>By industry convention, a "word" in typing tests equals <strong>5 characters</strong> (including spaces). This standard lets fair comparisons across passages with different average word lengths.</p>
+      <h3>Gross WPM</h3>
+      <p>Gross WPM = (Total characters ÷ 5) ÷ minutes<br>
+      Counts every character you typed — correct or incorrect.</p>
+      <h3>Net WPM</h3>
+      <p>Net WPM = Gross WPM − (incorrect words ÷ minutes)<br>
+      Penalizes errors so that speed without accuracy is not rewarded.</p>
+      <h3>Example</h3>
+      <p>If you typed 1,250 characters in 2 minutes with 5 incorrect words:<br>
+      Gross = (1250 ÷ 5) ÷ 2 = <strong>125 WPM</strong><br>
+      Net = 125 − (5 ÷ 2) = <strong>122.5 WPM</strong></p>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script>
+    document.getElementById("calc-btn").addEventListener("click", () => {
+      const chars = parseFloat(document.getElementById("total-chars").value) || 0;
+      const mins  = parseFloat(document.getElementById("minutes").value) || 0;
+      const errs  = parseFloat(document.getElementById("error-words").value) || 0;
+
+      if (mins <= 0) { alert("Please enter a time greater than 0 minutes."); return; }
+
+      const totalWords = chars / 5;
+      const gross = totalWords / mins;
+      const net   = Math.max(0, gross - errs / mins);
+      const acc   = totalWords > 0 ? Math.round(((totalWords - errs) / totalWords) * 100) : 0;
+
+      document.getElementById("net-wpm-out").textContent   = Math.round(net);
+      document.getElementById("gross-wpm-out").textContent = Math.round(gross);
+      document.getElementById("words-out").textContent     = Math.round(totalWords);
+      document.getElementById("acc-out").textContent       = acc + "%";
+      document.getElementById("calc-result").style.display = "";
+    });
+  </script>
+  <footer id="site-footer"></footer>
+
+  <script src="footer.js"></script>
+
+  <script src="seo.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Test for Students — SpeedType</title>
+  <meta name="description" content="Academic typing test for students. Passages drawn from science, history, and literature to build both speed and knowledge.">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.TYPING_CONFIG = {
+      defaultDuration: 60,
+      passages: [
+        "Photosynthesis is the process by which plants use sunlight water and carbon dioxide to produce glucose and oxygen the glucose provides energy for the plant to grow and the oxygen is released into the air we breathe every day",
+        "The water cycle describes how water moves continuously through the environment evaporating from oceans and lakes rising into the atmosphere forming clouds and then falling back to earth as rain or snow before flowing into rivers and groundwater",
+        "During the Renaissance period in Europe art science and philosophy flourished as scholars rediscovered ancient Greek and Roman knowledge artists like Leonardo da Vinci and Michelangelo created masterworks that continue to inspire people around the world centuries later",
+        "Algebra uses letters and symbols to represent numbers and unknown quantities in mathematical expressions which allows us to write general rules that apply to many situations and solve for missing values by applying logical operations to both sides of an equation",
+        "An ecosystem is a community of living organisms that interact with each other and with their physical environment energy flows through the ecosystem from producers such as plants through primary consumers and on to secondary and tertiary consumers at the top",
+        "The American Revolution was a colonial revolt that began in 1775 and ended with the Treaty of Paris in 1783 establishing the United States as an independent nation the conflict was rooted in disputes over taxation representation and colonial self governance",
+        "DNA or deoxyribonucleic acid contains the genetic instructions used in the growth development and reproduction of all known living organisms it is shaped like a twisted ladder called a double helix and information is encoded in the sequence of its four chemical bases",
+        "Gravity is a fundamental force of nature that attracts objects with mass toward one another Isaac Newton described it with a mathematical law and Albert Einstein later explained it as a curvature of spacetime caused by the presence of mass and energy",
+        "The periodic table organizes all known chemical elements by their atomic number and chemical properties Dmitri Mendeleev created the original version in 1869 and predicted the existence of elements that had not yet been discovered based on gaps in his table",
+        "William Shakespeare wrote thirty seven plays and one hundred and fifty four sonnets during his lifetime his works explored universal themes of love ambition jealousy betrayal and the complexity of human nature in language that remains powerful and relevant today",
+        "Supply and demand is the foundational principle of market economics when the supply of a product increases and demand remains constant prices tend to fall and when consumer demand rises faster than supply producers can charge higher prices for their goods",
+        "The speed of light in a vacuum is approximately three hundred million meters per second this constant appears throughout physics and according to Einstein's theory of special relativity no object with mass can reach or exceed this universal speed limit",
+        "Ancient Egypt was one of history's most remarkable civilizations lasting more than three thousand years the Egyptians built towering pyramids developed one of the first writing systems and created a complex society along the banks of the life giving Nile River",
+        "The human brain is the most complex organ in the known universe containing approximately eighty six billion neurons each connected to thousands of others forming networks that support thought emotion memory language movement perception and every aspect of conscious experience",
+        "Climate change refers to long term shifts in global temperature and weather patterns driven primarily by human activities such as burning fossil fuels which release greenhouse gases that trap heat in the atmosphere and cause the planet to warm steadily over time",
+        "The scientific method is a systematic process for investigating phenomena involving observation forming a hypothesis designing an experiment collecting data analyzing results and drawing conclusions that can be tested and verified independently by other researchers",
+        "The Renaissance artist and scientist Leonardo da Vinci filled thousands of notebook pages with observations inventions and sketches of human anatomy machines and natural phenomena demonstrating that curiosity and careful observation are the foundations of all great discovery",
+        "Plate tectonics theory explains that the Earth's crust is divided into large plates that move slowly over the molten mantle beneath causing earthquakes volcanic eruptions and the gradual reshaping of continents and ocean basins over millions of years",
+        "The Industrial Revolution which began in Britain in the late eighteenth century transformed society from an agricultural economy to one based on manufacturing and machinery changing where people worked how they lived and how goods were produced on a massive scale",
+        "Mitosis is the process by which a cell duplicates its DNA and divides into two identical daughter cells it has four main stages called prophase metaphase anaphase and telophase and it is essential for growth tissue repair and asexual reproduction in organisms",
+      ],
+    };
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>Typing Test for Students</h1>
+      <p class="subtitle">Academic passages covering science, history, literature, and more — practice typing while reinforcing what you learn in class.</p>
+    </header>
+
+    <section class="controls">
+      <label for="duration">Duration:</label>
+      <select id="duration">
+        <option value="60" selected>1 minute</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
+        <option value="300">5 minutes</option>
+      </select>
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat"><span class="stat-value" id="timer">60</span><span class="stat-label">seconds left</span></div>
+      <div class="stat"><span class="stat-value" id="wpm">0</span><span class="stat-label">WPM</span></div>
+      <div class="stat"><span class="stat-value" id="accuracy">100%</span><span class="stat-label">accuracy</span></div>
+      <div class="stat"><span class="stat-value" id="errors">0</span><span class="stat-label">misspelled</span></div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input id="word-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Start typing here..." aria-label="Type the highlighted word, then press space">
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card"><span class="result-value" id="final-wpm">0</span><span class="result-label">Net WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-gross-wpm">0</span><span class="result-label">Gross WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-accuracy">0%</span><span class="result-label">Accuracy</span></div>
+        <div class="result-card"><span class="result-value" id="final-score">0</span><span class="result-label">Score</span></div>
+      </div>
+      <div class="word-counts"><span id="final-correct">0 correct</span> · <span id="final-incorrect">0 misspelled</span></div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+
+    <section class="info-section">
+      <h2>Why Students Should Practice Typing</h2>
+      <p>Typing speed directly affects academic performance. Students who type faster can keep up with lecture notes, write essays more efficiently, and spend less mental energy on the mechanics of writing — leaving more focus for the actual ideas.</p>
+      <h3>Recommended speed goals for students</h3>
+      <ul>
+        <li><strong>Middle school:</strong> aim for 30–45 WPM</li>
+        <li><strong>High school:</strong> aim for 45–60 WPM</li>
+        <li><strong>College:</strong> 60+ WPM makes note-taking much easier</li>
+      </ul>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script src="script.js"></script>
+  <footer id="site-footer"></footer>
+
+  <script src="footer.js"></script>
+
+  <script src="seo.js"></script>
+
+</body>
+</html>

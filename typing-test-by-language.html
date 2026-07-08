@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Test by Language — SpeedType</title>
+  <meta name="description" content="Typing test passages themed around different world languages and cultures. Practice English typing while exploring global perspectives.">
+  <link rel="stylesheet" href="style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>Typing Test by Language</h1>
+      <p class="subtitle">Choose a language theme below. Each set uses vocabulary and topics from that language's culture.</p>
+    </header>
+
+    <div class="mode-selector" id="lang-selector">
+      <button class="mode-pill active" data-lang="english">English</button>
+      <button class="mode-pill" data-lang="spanish">Spanish</button>
+      <button class="mode-pill" data-lang="french">French</button>
+      <button class="mode-pill" data-lang="german">German</button>
+      <button class="mode-pill" data-lang="japanese">Japanese</button>
+      <button class="mode-pill" data-lang="italian">Italian</button>
+      <button class="mode-pill" data-lang="portuguese">Portuguese</button>
+      <button class="mode-pill" data-lang="chinese">Chinese</button>
+      <button class="mode-pill" data-lang="arabic">Arabic</button>
+      <button class="mode-pill" data-lang="korean">Korean</button>
+    </div>
+
+    <section class="controls">
+      <label for="duration">Duration:</label>
+      <select id="duration">
+        <option value="60" selected>1 minute</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
+        <option value="300">5 minutes</option>
+      </select>
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat"><span class="stat-value" id="timer">60</span><span class="stat-label">seconds left</span></div>
+      <div class="stat"><span class="stat-value" id="wpm">0</span><span class="stat-label">WPM</span></div>
+      <div class="stat"><span class="stat-value" id="accuracy">100%</span><span class="stat-label">accuracy</span></div>
+      <div class="stat"><span class="stat-value" id="errors">0</span><span class="stat-label">misspelled</span></div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input id="word-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Start typing here..." aria-label="Type the highlighted word, then press space">
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card"><span class="result-value" id="final-wpm">0</span><span class="result-label">Net WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-gross-wpm">0</span><span class="result-label">Gross WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-accuracy">0%</span><span class="result-label">Accuracy</span></div>
+        <div class="result-card"><span class="result-value" id="final-score">0</span><span class="result-label">Score</span></div>
+      </div>
+      <div class="word-counts"><span id="final-correct">0 correct</span> · <span id="final-incorrect">0 misspelled</span></div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+
+    <section class="info-section">
+      <h2>About Language-Themed Typing Tests</h2>
+      <p>Each language theme features passages written in English that focus on the culture vocabulary history and concepts of that language's world. This lets you practice touch typing on a standard keyboard while exploring global perspectives.</p>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script>
+    const SETS = {
+      english: [
+        "The English language is one of the most widely spoken languages in the world having spread through centuries of trade exploration and cultural exchange and it continues to serve as the primary language of international business science and diplomacy",
+        "British English and American English differ in spelling pronunciation and vocabulary the word colour in Britain becomes color in America and what British speakers call a biscuit Americans call a cookie yet both forms are instantly recognizable to speakers of either dialect",
+        "The English language borrows freely from other languages with words like rendezvous from French algebra from Arabic piano from Italian and kindergarten from German its vast vocabulary is a living record of centuries of contact with other cultures and tongues",
+        "Shakespeare contributed more new words and phrases to the English language than any other writer expressions like break the ice cold blooded lonely and bedroom all appear in his plays for the first time and remain in everyday use centuries later",
+        "The Oxford English Dictionary tracks the history and meaning of over half a million English words and its editors continuously monitor how the language changes in real time adding new words and updating definitions as usage shifts across different communities",
+      ],
+      spanish: [
+        "Spanish is the second most spoken native language in the world with over four hundred million speakers across twenty countries it is the official language of Mexico Colombia Argentina Spain and many other nations connected by a rich shared cultural heritage",
+        "The Spanish language evolved from Latin brought to the Iberian Peninsula by Roman soldiers and merchants and over centuries it absorbed words from Arabic during the Moorish occupation from indigenous American languages and from the many cultures it encountered through trade",
+        "Garcia Marquez the Colombian novelist popularized a style called magical realism in which fantastical events occur within otherwise realistic settings his novel One Hundred Years of Solitude is considered one of the greatest works in the Spanish language and in all of world literature",
+        "Flamenco music and dance which originated in the Andalusia region of southern Spain combines elements of Moorish Jewish and Romani traditions and is recognized by UNESCO as an intangible cultural heritage of humanity its passionate rhythms have influenced music around the world",
+        "The concept of sobremesa describes the Spanish custom of lingering at the table long after a meal to talk laugh and simply enjoy each other's company it reflects a cultural value that places connection conversation and the pleasure of shared time above hurrying on to the next task",
+      ],
+      french: [
+        "French is spoken by over three hundred million people worldwide and serves as an official language of the United Nations the European Union and many international organizations its reputation for elegance and precision has long made it a language of diplomacy literature and the arts",
+        "The croissant which is now considered a quintessentially French pastry actually originated in Vienna Austria and was brought to Paris by the Austrian diplomat Metternich in the nineteenth century French bakers perfected the flaky buttery laminated dough that made it world famous",
+        "Descartes Voltaire Rousseau and Sartre are among the French philosophers whose ideas have shaped modern thought the French Enlightenment of the eighteenth century produced arguments for reason tolerance and individual rights that directly influenced the American and French Revolutions",
+        "French cuisine is so central to the nation's identity that UNESCO added the gastronomic meal of the French to its list of intangible cultural heritage in 2010 from cassoulet to bouillabaisse from croissants to macarons French food is considered both art and daily ritual",
+        "The Tour de France cycling race covers more than three thousand kilometers over three weeks and winds through mountains valleys and villages across the country it began in 1903 as a publicity stunt for a sports newspaper and has grown into one of the world's most watched sporting events",
+      ],
+      german: [
+        "German is the most widely spoken native language in the European Union and serves as the official language of Germany Austria Switzerland Liechtenstein and Luxembourg its complex grammar and long compound nouns are both a challenge and a delight for language learners around the world",
+        "The German language has a remarkable capacity for building compound words from simpler ones giving precise names to complex concepts the word Schadenfreude for example means finding pleasure in another person's misfortune and has been adopted into English because no single English word captures the idea",
+        "Johann Wolfgang von Goethe the poet philosopher and scientist is considered the greatest figure in German literature his novel The Sorrows of Young Werther sparked a continent wide wave of romantic melancholy while his masterwork Faust explores the deepest questions of human ambition and redemption",
+        "Germany's engineering tradition stretches back centuries and today the country is renowned for precision manufacturing in automobiles optics medical devices and industrial machinery the word German is associated globally with quality craftsmanship and technical reliability in many industries",
+        "Oktoberfest the annual festival held in Munich began in 1810 as a celebration of the wedding of Crown Prince Ludwig and has grown into the world's largest folk festival attracting millions of visitors each year who come for the beer music traditional Bavarian food and festive atmosphere",
+      ],
+      japanese: [
+        "Japanese culture places enormous value on the concept of ma which refers to the intentional use of negative space in art music and design rather than filling every moment or area with content Japanese aesthetics celebrate the power of pause emptiness and what is left unsaid",
+        "Ikigai is a Japanese concept that describes the intersection of what you love what you are good at what the world needs and what you can be paid for finding your ikigai is considered a key to a long purposeful and deeply satisfying life",
+        "The Japanese tea ceremony known as chado or the way of tea is a ritual that has been refined over five centuries it embodies the four principles of harmony respect purity and tranquility and turns the simple act of preparing and sharing tea into a profound meditative practice",
+        "Kaizen the Japanese philosophy of continuous improvement encourages individuals and organizations to make small incremental changes every day rather than pursuing dramatic transformations this approach underpinned Japan's industrial recovery after World War Two and has been adopted by businesses worldwide",
+        "Haiku is a form of Japanese poetry consisting of three lines with five seven and five syllables the best haiku capture a single vivid moment in nature often at the boundary between seasons conveying depth and emotion through extreme concision and careful attention to the physical world",
+      ],
+      italian: [
+        "Italian is descended directly from Latin and remains the closest living language to the tongue spoken by Caesar and Cicero its musical rhythm and clear vowel sounds have made it the language of opera for centuries and singers from around the world study Italian to master classical vocal technique",
+        "The Renaissance which means rebirth began in Italy in the fourteenth century as artists and scholars rediscovered the art and philosophy of ancient Greece and Rome Florence and Venice became centers of patronage where Botticelli Raphael and Titian created works that still define Western art",
+        "Italian cuisine varies dramatically from region to region the pasta dishes of Rome differ from the risotto of Milan the seafood of Sicily and the truffles of Piedmont Italians are intensely proud of their local food traditions and guard authentic regional recipes with great passion",
+        "The concept of la dolce vita or the sweet life reflects an Italian appreciation for the pleasures of good food family conversation leisure and beauty it describes an approach to daily life that prioritizes quality of experience over quantity of achievement and has made Italy one of the world's most admired cultures",
+        "Ferrari Lamborghini Alfa Romeo and Maserati are among the Italian carmakers whose vehicles are celebrated worldwide not only for their performance but for their beauty Italian automotive design is considered an art form in itself and the country's designers have shaped the look of the global automobile industry",
+      ],
+      portuguese: [
+        "Portuguese is the official language of Brazil Portugal Angola Mozambique Cape Verde and several other nations making it one of the most widely spoken languages in the world Brazil alone is home to over two hundred million Portuguese speakers and has the largest Portuguese speaking population on earth",
+        "Fado the melancholic musical genre of Portugal is built around the concept of saudade a uniquely Portuguese word that describes a deep longing or nostalgia for something or someone absent it is considered untranslatable and captures a distinctive feature of Portuguese emotional life and national identity",
+        "Brazil is home to the Amazon rainforest the largest tropical forest on earth covering more than five million square kilometers across nine countries the Amazon basin holds about ten percent of all species on earth and plays a critical role in regulating the global climate and water cycle",
+        "Capoeira the Brazilian martial art that blends fighting dance music and acrobatics was developed by enslaved Africans in Brazil who disguised their combat training as dance to avoid punishment from colonial authorities today it is practiced worldwide as both a martial art and a cultural celebration",
+        "Fernando Pessoa the Portuguese poet and philosopher wrote under several distinct pseudonyms each with a fully developed biography and literary style he called these fictitious authors heteronyms rather than pen names because they were separate artistic identities rather than just aliases for the same person",
+      ],
+      chinese: [
+        "Mandarin Chinese is the most widely spoken language in the world by number of native speakers and serves as the official language of China Taiwan and Singapore its tonal nature means that the same syllable spoken in different tones conveys completely different meanings requiring careful attention from learners",
+        "Chinese calligraphy is considered one of the highest forms of visual art in East Asia the brushwork used to write Chinese characters reflects not only technical skill but also the writer's personality spirit and emotional state a masterful piece of calligraphy is valued as much as a painting",
+        "The concept of guanxi in Chinese culture refers to the network of relationships and social connections that people cultivate and maintain over time it is fundamental to how business is conducted in China and reflects a broader cultural emphasis on community reciprocity and long term relationships over short term transactions",
+        "Traditional Chinese medicine which has been practiced for over two thousand years uses herbs acupuncture massage and dietary advice to restore balance within the body it is based on the concept of qi or life energy flowing through pathways in the body and the balance of yin and yang forces",
+        "The Great Wall of China which stretches thousands of kilometers across northern China was built over many centuries by successive dynasties to protect against invasion from the north it required the labor of millions of workers and remains one of the most impressive feats of engineering in human history",
+      ],
+      arabic: [
+        "Arabic is spoken by over three hundred million people across twenty two countries and serves as the liturgical language of Islam giving it significance for over one billion Muslims worldwide classical Arabic as used in the Quran has remained largely unchanged for over fourteen centuries",
+        "During the Islamic Golden Age from the eighth to the fourteenth centuries Arab scholars made transformative contributions to mathematics astronomy medicine and philosophy they preserved and translated the works of ancient Greece and made original advances that laid the foundations for modern science in Europe and beyond",
+        "The concept of hospitality known as karam is central to Arabic culture across the Middle East and North Africa welcoming a guest generously is considered both a moral duty and a point of personal and family honor offering food coffee and shelter to a traveler is a tradition with ancient roots",
+        "Arabic calligraphy is considered the highest art form in Islamic civilization because the Quran forbids figurative representations of living beings artists channeled their creativity into the script itself developing elaborate geometric and floral styles that adorn mosques palaces and manuscripts throughout the Islamic world",
+        "The One Thousand and One Nights also known as the Arabian Nights is a collection of Middle Eastern folk tales compiled over many centuries featuring stories within stories about Sinbad the Sailor Ali Baba and Scheherazade the clever narrator who saves her life by spinning tales for the sultan each night",
+      ],
+      korean: [
+        "Korean is spoken by over seventy five million people primarily in South Korea and North Korea and by diaspora communities around the world Hangul the Korean alphabet was invented in the fifteenth century by King Sejong and his scholars and is celebrated for its scientific and logical design",
+        "The Korean concept of nunchi refers to the subtle art of reading a room and understanding what others are feeling and needing without being told it is considered an essential social skill in Korean culture and someone with good nunchi is attuned to the emotional atmosphere and social dynamics around them",
+        "Korean cuisine is built around the concept of balance with meals traditionally incorporating a harmony of flavors textures and colors kimchi the fermented vegetable dish that accompanies almost every Korean meal has hundreds of regional varieties and is considered both a national food and an important cultural symbol",
+        "The Korean wave known as hallyu has brought Korean popular culture particularly music drama and cinema to a global audience K-pop groups like BTS have broken records previously held by Western artists and Korean films like Parasite have won major international awards signaling a profound shift in global cultural influence",
+        "The Joseon Dynasty which ruled Korea from 1392 to 1897 was one of the longest lived dynasties in world history during this period Korean scholars refined Confucian philosophy developed sophisticated artistic traditions in pottery painting and music and created the civil service examination system that governed access to government positions",
+      ],
+    };
+
+    window.TYPING_CONFIG = { defaultDuration: 60, passages: SETS.english };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".mode-pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".mode-pill").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          window.TYPING_CONFIG.passages = SETS[btn.dataset.lang];
+          if (window.resetTypingTest) window.resetTypingTest();
+        });
+      });
+    });
+  </script>
+  <script src="script.js"></script>
+  <footer id="site-footer"></footer>
+
+  <script src="footer.js"></script>
+
+  <script src="seo.js"></script>
+
+</body>
+</html>

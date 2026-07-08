@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2 Minute Typing Test — SpeedType</title>
+  <meta name="description" content="Test your typing speed over 2 minutes. A great balance between sprint and endurance for measuring WPM.">
+  <link rel="stylesheet" href="style.css">
+  <script>window.TYPING_CONFIG = { defaultDuration: 120, hideDurationSelector: true };</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>2 Minute Typing Test</h1>
+      <p class="subtitle">Type for 2 full minutes to get a more consistent picture of your sustained typing speed.</p>
+    </header>
+
+    <section class="controls">
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat"><span class="stat-value" id="timer">2:00</span><span class="stat-label">time left</span></div>
+      <div class="stat"><span class="stat-value" id="wpm">0</span><span class="stat-label">WPM</span></div>
+      <div class="stat"><span class="stat-value" id="accuracy">100%</span><span class="stat-label">accuracy</span></div>
+      <div class="stat"><span class="stat-value" id="errors">0</span><span class="stat-label">misspelled</span></div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input id="word-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Start typing here..." aria-label="Type the highlighted word, then press space">
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card"><span class="result-value" id="final-wpm">0</span><span class="result-label">Net WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-gross-wpm">0</span><span class="result-label">Gross WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-accuracy">0%</span><span class="result-label">Accuracy</span></div>
+        <div class="result-card"><span class="result-value" id="final-score">0</span><span class="result-label">Score</span></div>
+      </div>
+      <div class="word-counts"><span id="final-correct">0 correct</span> · <span id="final-incorrect">0 misspelled</span></div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+
+    <section class="info-section">
+      <h2>About the 2 Minute Typing Test</h2>
+      <p>The 2 minute typing test gives a more stable WPM reading than the 1 minute test because small bursts of speed or slowdowns are averaged out over a longer session.</p>
+      <h3>Why take a 2 minute test?</h3>
+      <p>It's long enough to reveal your true sustained rhythm but short enough that focus stays sharp throughout. Many employers and typing certification programs use 2–3 minute tests as their standard benchmark.</p>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script src="script.js"></script>
+  <footer id="site-footer"></footer>
+
+  <script src="footer.js"></script>
+
+  <script src="seo.js"></script>
+
+</body>
+</html>

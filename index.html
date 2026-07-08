@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Typing Speed Test — SpeedType</title>
+  <meta name="description" content="Take a free typing speed test and measure your WPM. Track accuracy, see misspelled words, and improve your typing skills.">
+  <link rel="stylesheet" href="style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>⌨️ Speed Typing Test</h1>
+      <p class="subtitle">Type the passage below as fast and accurately as you can. The timer starts on your first keystroke.</p>
+    </header>
+
+    <section class="controls">
+      <label for="duration">Duration:</label>
+      <select id="duration">
+        <option value="30">30 seconds</option>
+        <option value="60" selected>60 seconds</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
+        <option value="300">5 minutes</option>
+        <option value="600">10 minutes</option>
+      </select>
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat">
+        <span class="stat-value" id="timer">60</span>
+        <span class="stat-label">seconds left</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="wpm">0</span>
+        <span class="stat-label">WPM</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="accuracy">100%</span>
+        <span class="stat-label">accuracy</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value" id="errors">0</span>
+        <span class="stat-label">misspelled</span>
+      </div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input
+        id="word-input"
+        type="text"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+        placeholder="Start typing here..."
+        aria-label="Type the highlighted word, then press space"
+      >
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card">
+          <span class="result-value" id="final-wpm">0</span>
+          <span class="result-label">Net WPM</span>
+        </div>
+        <div class="result-card">
+          <span class="result-value" id="final-gross-wpm">0</span>
+          <span class="result-label">Gross WPM</span>
+        </div>
+        <div class="result-card">
+          <span class="result-value" id="final-accuracy">0%</span>
+          <span class="result-label">Accuracy</span>
+        </div>
+        <div class="result-card">
+          <span class="result-value" id="final-score">0</span>
+          <span class="result-label">Score</span>
+        </div>
+      </div>
+      <div class="word-counts">
+        <span id="final-correct">0 correct</span> ·
+        <span id="final-incorrect">0 misspelled</span>
+      </div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+
+    <section class="article" style="margin-top:2rem;">
+      <h2>The Free Online Typing Speed Test</h2>
+      <p>Welcome to SpeedType, a free typing test that measures how fast and how accurately you type. In just one minute you can find out your typing speed in words per minute (WPM), see your accuracy percentage, and get a detailed list of every word you misspelled. There is nothing to install and no account to create — simply start typing in the box above and your results appear the moment the timer ends.</p>
+      <p>Unlike tests that report only a single speed number, SpeedType measures the two things that actually matter: how quickly you type and how accurately you do it. Speed without accuracy is not real productivity, because every mistake has to be found and corrected. That is why we show you both your <strong>gross WPM</strong> (your raw speed) and your <strong>net WPM</strong> (your speed after subtracting errors), along with a combined score that rewards the balance of the two.</p>
+
+      <h2>How Typing Speed Is Measured</h2>
+      <p>By long-standing convention, a "word" in a typing test is defined as five characters, including spaces. This standard means that a passage full of short words and a passage full of long words can be compared fairly. Your words per minute is calculated by taking the number of characters you typed, dividing by five to get standardized words, and then dividing by the number of minutes elapsed.</p>
+      <ul>
+        <li><strong>Gross WPM</strong> counts every character you typed, correct or not. It reflects your raw finger speed.</li>
+        <li><strong>Net WPM</strong> subtracts your uncorrected errors, giving a truer picture of useful output.</li>
+        <li><strong>Accuracy</strong> is the percentage of words you typed correctly out of all the words you attempted.</li>
+      </ul>
+      <p>If you want to calculate these numbers yourself from your own practice sessions, our <a href="wpm-calculator.html">WPM calculator</a> and <a href="accuracy-calculator.html">accuracy calculator</a> walk through the exact formulas step by step.</p>
+
+      <h2>What Is a Good Typing Speed?</h2>
+      <p>The average person types somewhere between 35 and 45 words per minute. Reaching 60 to 70 WPM puts you comfortably above average and is more than fast enough for most professional work. Skilled typists reach 80 to 100 WPM, and the fastest typists in the world exceed 120 WPM while maintaining high accuracy. Wherever you are starting from, the key is consistent practice — even a few minutes a day produces steady, measurable improvement over a few weeks.</p>
+
+      <h2>How to Improve Your Typing Speed</h2>
+      <p>Getting faster is less about raw effort and more about building the right habits. These are the techniques that make the biggest difference:</p>
+      <ul>
+        <li><strong>Use the correct finger positions.</strong> Rest your fingers on the home row (ASDF for the left hand, JKL; for the right) and let each finger cover its assigned keys.</li>
+        <li><strong>Do not look at the keyboard.</strong> Touch typing — typing without looking at your hands — is the single most important skill for speed. It feels slow at first but pays off enormously.</li>
+        <li><strong>Prioritize accuracy over speed.</strong> Slow down enough to type correctly. Speed follows naturally once accurate movements become automatic.</li>
+        <li><strong>Practice a little every day.</strong> Short, regular sessions build muscle memory far better than occasional long ones.</li>
+        <li><strong>Review your mistakes.</strong> Our misspelled-word report shows exactly which words trip you up, so you can focus your practice where it counts.</li>
+      </ul>
+
+      <h2>Typing Tests for Every Need</h2>
+      <p>SpeedType offers a wide range of tests so you can practice in the way that suits you best:</p>
+      <ul>
+        <li><strong>Timed tests</strong> of <a href="1-minute-typing-test.html">1 minute</a>, <a href="2-minute-typing-test.html">2 minutes</a>, <a href="3-minute-typing-test.html">3 minutes</a>, <a href="5-minute-typing-test.html">5 minutes</a>, and <a href="10-minute-typing-test.html">10 minutes</a>.</li>
+        <li><strong>Audience-specific tests</strong> for <a href="typing-test-for-kids.html">kids</a>, <a href="typing-test-for-students.html">students</a>, <a href="typing-test-for-teachers.html">teachers</a>, and <a href="typing-test-for-coders.html">coders</a>.</li>
+        <li><strong>Themed tests</strong> organized <a href="typing-test-by-language.html">by language</a> and <a href="typing-test-by-profession.html">by profession</a>.</li>
+        <li><strong>Typing games</strong> like <a href="typing-games.html">Word Rush</a> to make practice fun.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h3>Is the typing test really free?</h3>
+        <p>Yes. Every test and tool on SpeedType is completely free to use, with no registration, download, or payment required. The site is supported by advertising.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How is my typing speed calculated?</h3>
+        <p>We count the characters you typed, divide by five to get standardized words, and divide by the time elapsed in minutes. Net WPM additionally subtracts your errors, so your score reflects accurate typing rather than raw speed alone.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is a good words-per-minute score?</h3>
+        <p>The average is around 40 WPM. Anything above 60 WPM is considered above average, and professional typists often exceed 80 WPM while keeping their accuracy high.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does the test check my spelling?</h3>
+        <p>Yes. Every word you type is compared against the target word. After the test, you get a complete list of the words you misspelled, showing exactly what you typed versus what was expected, so you can target your practice.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I use SpeedType on my phone?</h3>
+        <p>Absolutely. The site is fully responsive and works on desktops, laptops, tablets, and phones. Practicing on a physical keyboard will generally give you the fastest speeds.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "SpeedType",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "description": "A free online typing speed test that measures words per minute (WPM) and accuracy, with a detailed report of misspelled words.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Is the typing test really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every test and tool on SpeedType is completely free to use, with no registration, download, or payment required. The site is supported by advertising." } },
+          { "@type": "Question", "name": "How is my typing speed calculated?", "acceptedAnswer": { "@type": "Answer", "text": "We count the characters you typed, divide by five to get standardized words, and divide by the time elapsed in minutes. Net WPM additionally subtracts your errors." } },
+          { "@type": "Question", "name": "What is a good words-per-minute score?", "acceptedAnswer": { "@type": "Answer", "text": "The average is around 40 WPM. Anything above 60 WPM is considered above average, and professional typists often exceed 80 WPM while keeping accuracy high." } },
+          { "@type": "Question", "name": "Does the test check my spelling?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every word is compared against the target word, and after the test you get a complete list of misspelled words showing what you typed versus what was expected." } },
+          { "@type": "Question", "name": "Can I use SpeedType on my phone?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The site is fully responsive and works on desktops, laptops, tablets, and phones." } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script src="nav.js"></script>
+  <script src="footer.js"></script>
+  <script src="seo.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

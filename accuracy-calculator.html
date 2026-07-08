@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Accuracy Calculator — SpeedType</title>
+  <meta name="description" content="Free typing accuracy calculator. Enter words typed and errors to find your accuracy percentage and error rate.">
+  <link rel="stylesheet" href="style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>Typing Accuracy Calculator</h1>
+      <p class="subtitle">Find out your exact typing accuracy percentage and how many words per hour you lose to errors.</p>
+    </header>
+
+    <div class="calc-card">
+      <div class="form-group">
+        <label for="words-attempted">Total words attempted</label>
+        <input type="number" id="words-attempted" min="1" placeholder="e.g. 80">
+      </div>
+      <div class="form-group">
+        <label for="words-wrong">Incorrectly typed words</label>
+        <input type="number" id="words-wrong" min="0" placeholder="e.g. 4">
+      </div>
+      <div class="form-group">
+        <label for="test-duration">Test duration (minutes, optional)</label>
+        <input type="number" id="test-duration" min="0" step="0.5" placeholder="e.g. 1">
+      </div>
+      <button id="acc-btn" type="button">Calculate Accuracy</button>
+
+      <div class="calc-result" id="acc-result" style="display:none">
+        <span class="calc-result-value" id="acc-pct-out">0%</span>
+        <span class="calc-result-label">Accuracy</span>
+        <div class="calc-breakdown">
+          <div class="result-card"><span class="result-value" id="correct-out">0</span><span class="result-label">Correct Words</span></div>
+          <div class="result-card"><span class="result-value" id="wrong-out">0</span><span class="result-label">Errors</span></div>
+          <div class="result-card"><span class="result-value" id="err-rate-out">0%</span><span class="result-label">Error Rate</span></div>
+          <div class="result-card"><span class="result-value" id="wpm-penalty-out">—</span><span class="result-label">WPM Penalty</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="info-section">
+      <h2>How Typing Accuracy is Measured</h2>
+      <p>Accuracy is the percentage of words you typed correctly out of all words you attempted:</p>
+      <p><strong>Accuracy = (Correct words ÷ Total words) × 100</strong></p>
+      <h3>Why accuracy matters more than raw speed</h3>
+      <p>At 95% accuracy, 1 in 20 words is wrong. In a 60-WPM typist's output that's 3 errors per minute — errors that must be corrected, slowing effective output. True productivity comes from the combination of speed and accuracy, not speed alone.</p>
+      <h3>Target accuracy benchmarks</h3>
+      <ul>
+        <li><strong>Good:</strong> 95% — most professional situations</li>
+        <li><strong>Very good:</strong> 97–98%</li>
+        <li><strong>Excellent:</strong> 99%+ — data entry, medical transcription</li>
+      </ul>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script>
+    document.getElementById("acc-btn").addEventListener("click", () => {
+      const attempted = parseFloat(document.getElementById("words-attempted").value) || 0;
+      const wrong     = parseFloat(document.getElementById("words-wrong").value) || 0;
+      const mins      = parseFloat(document.getElementById("test-duration").value) || 0;
+
+      if (attempted <= 0) { alert("Please enter a number of words attempted."); return; }
+      const correct  = Math.max(0, attempted - wrong);
+      const acc      = Math.round((correct / attempted) * 100);
+      const errRate  = Math.round((wrong / attempted) * 100);
+      const penalty  = mins > 0 ? Math.round(wrong / mins) : null;
+
+      document.getElementById("acc-pct-out").textContent   = acc + "%";
+      document.getElementById("correct-out").textContent   = correct;
+      document.getElementById("wrong-out").textContent     = wrong;
+      document.getElementById("err-rate-out").textContent  = errRate + "%";
+      document.getElementById("wpm-penalty-out").textContent = penalty !== null ? penalty + " WPM" : "—";
+      document.getElementById("acc-result").style.display  = "";
+    });
+  </script>
+  <footer id="site-footer"></footer>
+
+  <script src="footer.js"></script>
+
+  <script src="seo.js"></script>
+
+</body>
+</html>

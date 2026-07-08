@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 Minute Typing Test — SpeedType</title>
+  <meta name="description" content="The ultimate endurance typing test. 10 minutes of continuous typing to find your true sustainable WPM.">
+  <link rel="stylesheet" href="style.css">
+  <script>window.TYPING_CONFIG = { defaultDuration: 600, hideDurationSelector: true };</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>10 Minute Typing Test</h1>
+      <p class="subtitle">The ultimate endurance challenge. 10 minutes of continuous typing — only the truly consistent rise to the top.</p>
+    </header>
+
+    <section class="controls">
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat"><span class="stat-value" id="timer">10:00</span><span class="stat-label">time left</span></div>
+      <div class="stat"><span class="stat-value" id="wpm">0</span><span class="stat-label">WPM</span></div>
+      <div class="stat"><span class="stat-value" id="accuracy">100%</span><span class="stat-label">accuracy</span></div>
+      <div class="stat"><span class="stat-value" id="errors">0</span><span class="stat-label">misspelled</span></div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input id="word-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Start typing here..." aria-label="Type the highlighted word, then press space">
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card"><span class="result-value" id="final-wpm">0</span><span class="result-label">Net WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-gross-wpm">0</span><span class="result-label">Gross WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-accuracy">0%</span><span class="result-label">Accuracy</span></div>
+        <div class="result-card"><span class="result-value" id="final-score">0</span><span class="result-label">Score</span></div>
+      </div>
+      <div class="word-counts"><span id="final-correct">0 correct</span> · <span id="final-incorrect">0 misspelled</span></div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+
+    <section class="info-section">
+      <h2>About the 10 Minute Typing Test</h2>
+      <p>Ten minutes is a serious commitment. By this point your fingers, wrists, and focus are all tested. The WPM you achieve here is the most reliable indicator of your real-world sustained typing speed.</p>
+      <h3>Who takes a 10 minute test?</h3>
+      <ul>
+        <li>Competitive typists training for speed records</li>
+        <li>Data entry professionals required to prove endurance</li>
+        <li>Writers and journalists who type for long sessions daily</li>
+        <li>Anyone who wants a truly honest self-assessment</li>
+      </ul>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script src="script.js"></script>
+  <footer id="site-footer"></footer>
+
+  <script src="footer.js"></script>
+
+  <script src="seo.js"></script>
+
+</body>
+</html>

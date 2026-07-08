@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://testyourtypingiq.com/sitemap.xml

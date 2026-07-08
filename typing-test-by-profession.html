@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Test by Profession — SpeedType</title>
+  <meta name="description" content="Profession-specific typing tests for medical, legal, business, and other professionals. Practice with relevant vocabulary.">
+  <link rel="stylesheet" href="style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8788099801042098" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav id="site-nav"></nav>
+  <main class="container">
+    <header>
+      <h1>Typing Test by Profession</h1>
+      <p class="subtitle">Choose your field to practice with vocabulary and concepts from your professional world.</p>
+    </header>
+
+    <div class="mode-selector" id="prof-selector">
+      <button class="mode-pill active" data-prof="medical">Medical</button>
+      <button class="mode-pill" data-prof="legal">Legal</button>
+      <button class="mode-pill" data-prof="business">Business</button>
+      <button class="mode-pill" data-prof="engineering">Engineering</button>
+      <button class="mode-pill" data-prof="nursing">Nursing</button>
+      <button class="mode-pill" data-prof="writing">Creative Writing</button>
+      <button class="mode-pill" data-prof="science">Science</button>
+    </div>
+
+    <section class="controls">
+      <label for="duration">Duration:</label>
+      <select id="duration">
+        <option value="60" selected>1 minute</option>
+        <option value="120">2 minutes</option>
+        <option value="180">3 minutes</option>
+        <option value="300">5 minutes</option>
+      </select>
+      <button id="restart-btn" type="button">New Test</button>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stat"><span class="stat-value" id="timer">60</span><span class="stat-label">seconds left</span></div>
+      <div class="stat"><span class="stat-value" id="wpm">0</span><span class="stat-label">WPM</span></div>
+      <div class="stat"><span class="stat-value" id="accuracy">100%</span><span class="stat-label">accuracy</span></div>
+      <div class="stat"><span class="stat-value" id="errors">0</span><span class="stat-label">misspelled</span></div>
+    </section>
+
+    <section class="test-area">
+      <div id="passage" class="passage" aria-label="Passage to type"></div>
+      <input id="word-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Start typing here..." aria-label="Type the highlighted word, then press space">
+    </section>
+
+    <section id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="results-grid">
+        <div class="result-card"><span class="result-value" id="final-wpm">0</span><span class="result-label">Net WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-gross-wpm">0</span><span class="result-label">Gross WPM</span></div>
+        <div class="result-card"><span class="result-value" id="final-accuracy">0%</span><span class="result-label">Accuracy</span></div>
+        <div class="result-card"><span class="result-value" id="final-score">0</span><span class="result-label">Score</span></div>
+      </div>
+      <div class="word-counts"><span id="final-correct">0 correct</span> · <span id="final-incorrect">0 misspelled</span></div>
+      <div id="misspelled-section" class="misspelled-section hidden">
+        <h3>Misspelled words</h3>
+        <ul id="misspelled-list" class="misspelled-list"></ul>
+      </div>
+      <button id="try-again-btn" type="button">Try Again</button>
+    </section>
+
+    <section class="info-section">
+      <h2>Why Profession-Specific Practice Matters</h2>
+      <p>Practicing with the vocabulary of your field builds both typing speed and familiarity with the terms you use every day. Over time this reduces hesitation on complex words and improves your overall documentation and communication speed.</p>
+    </section>
+  </main>
+  <script src="nav.js"></script>
+  <script>
+    const SETS = {
+      medical: [
+        "Hypertension or chronically elevated blood pressure is a major risk factor for cardiovascular disease stroke and kidney failure treatment typically involves lifestyle modification including dietary changes regular exercise and stress reduction often combined with antihypertensive medications tailored to the individual patient",
+        "The cardiovascular system consists of the heart arteries veins and capillaries working together to circulate blood oxygen and nutrients throughout the body while removing carbon dioxide and metabolic waste the heart beats approximately one hundred thousand times per day pumping nearly five liters of blood each minute at rest",
+        "Diabetes mellitus is a metabolic disorder characterized by chronic hyperglycemia resulting from defects in insulin secretion insulin action or both type one diabetes involves autoimmune destruction of the pancreatic beta cells while type two is associated with insulin resistance and relative insulin deficiency",
+        "Informed consent is a fundamental principle of medical ethics requiring that patients receive sufficient information about their diagnosis proposed treatment alternatives and risks to make a voluntary autonomous decision healthcare providers must document this process carefully and ensure patient comprehension before proceeding",
+        "Antibiotic resistance is one of the most pressing public health challenges of our time occurring when bacteria evolve mechanisms to survive drugs that previously killed them overprescription inadequate courses of treatment and agricultural use of antibiotics have all accelerated the emergence of resistant strains worldwide",
+      ],
+      legal: [
+        "A contract is a legally binding agreement between two or more parties that creates mutual obligations enforceable by law the essential elements of a valid contract include offer acceptance consideration mutual assent and the legal capacity of all parties to enter into the agreement",
+        "Due process of law is a constitutional guarantee that the government must follow fair procedures before depriving any person of life liberty or property procedural due process concerns the fairness of the process itself while substantive due process addresses the fundamental fairness of the law being applied",
+        "Tort law governs civil wrongs that cause harm or loss to individuals and provides legal remedies primarily in the form of monetary damages the major categories of torts include intentional torts negligence and strict liability each with different standards for establishing the defendant's responsibility",
+        "Intellectual property law protects creative works inventions and brand identifiers through patents copyrights trademarks and trade secrets providing creators with limited exclusive rights to their work in exchange for disclosure or use that ultimately benefits the broader public through innovation and cultural production",
+        "The attorney client privilege is a legal protection that allows clients to communicate openly and honestly with their lawyers without fear that those communications will be disclosed to third parties or used against them in legal proceedings the privilege belongs to the client and can be waived only by the client",
+      ],
+      business: [
+        "A value proposition is a clear statement that explains how a product or service solves a customer's problem or improves their situation delivers specific benefits and tells the ideal customer why they should buy from this company rather than the competition it is the core of any effective marketing strategy",
+        "Cash flow management is one of the most critical skills in business profitability and solvency are different things a business can be profitable on paper while simultaneously running out of cash if receivables are slow revenues are seasonal or growth is outpacing the ability to collect what is owed",
+        "Agile project management is an iterative approach to planning and guiding project processes that breaks work into short development cycles called sprints allowing teams to adapt to changing requirements incorporate feedback quickly and deliver value continuously rather than waiting until a project is fully complete",
+        "Return on investment or ROI is a performance measure used to evaluate the efficiency of an investment or compare the efficiency of several investments it is calculated by dividing the net profit from an investment by its cost and expressing the result as a percentage the higher the ROI the more profitable the investment",
+        "Market segmentation is the process of dividing a broad consumer market into subsets of consumers who have common needs and priorities and then designing and implementing strategies to target them by identifying distinct groups businesses can tailor their messaging products and channels for greater effectiveness and efficiency",
+      ],
+      engineering: [
+        "Structural engineering involves the analysis and design of structures that support or resist loads from buildings and bridges to towers and dams engineers must ensure that their designs have sufficient strength stiffness and stability to withstand all anticipated loads including dead loads live loads wind and seismic forces",
+        "The first law of thermodynamics states that energy cannot be created or destroyed only converted from one form to another this principle of conservation of energy underpins all of mechanical and chemical engineering from the design of heat engines to the analysis of refrigeration systems and chemical reactions",
+        "Failure mode and effects analysis or FMEA is a systematic engineering methodology used to identify potential failures in a design process or product evaluate their causes and effects and prioritize corrective actions by ranking failures according to their severity occurrence probability and detectability",
+        "Finite element analysis is a computational technique used to predict how structures and materials will respond to forces heat and other physical effects by dividing a complex geometry into many small simple elements and solving the governing equations for each element simultaneously using powerful computers",
+        "Signal to noise ratio is a measure used in engineering and science to compare the level of a desired signal to the level of background noise a higher ratio indicates a cleaner more useful signal and the concept applies broadly from radio communications to audio systems sensor design and data analysis",
+      ],
+      nursing: [
+        "Patient assessment is the foundation of nursing practice involving the systematic collection of physiological psychological social and spiritual data to identify patient needs and guide care planning effective assessment requires keen observation active listening therapeutic communication and clinical reasoning skills",
+        "Medication administration is among the highest risk activities in nursing practice the five rights of medication administration which are the right patient right drug right dose right route and right time provide a basic safety framework but must be combined with clinical judgment and thorough knowledge of pharmacology",
+        "Pressure injury prevention requires identifying at risk patients using validated tools like the Braden Scale implementing regular repositioning schedules protecting bony prominences optimizing nutrition and hydration and maintaining skin integrity through careful moisture management and barrier protection measures",
+        "Therapeutic communication in nursing goes beyond giving information it involves active listening empathy and responding to both the spoken and unspoken needs of patients open ended questions reflection and silence are all tools that help patients feel heard understood and supported through difficult experiences",
+        "The nursing process is a systematic problem solving framework consisting of five phases assessment diagnosis planning implementation and evaluation it provides a structured approach to individualized patient care that is evidence based client centered and continuously updated as the patient's condition changes",
+      ],
+      writing: [
+        "The best first sentences in fiction do more than introduce a character or situation they establish a voice create tension and promise the reader something worth their time a great opening line earns the reader's trust and makes them feel that the author knows something they need to find out",
+        "Showing rather than telling is the cardinal principle of narrative writing rather than stating that a character is nervous a skilled writer shows the character's hands shaking their gaze dropping to the floor their voice losing its edge the difference between showing and telling is the difference between experience and information",
+        "Revision is where writing actually happens the first draft is the writer telling themselves the story the second is where clarity begins and the fifth or tenth is where the work becomes something worth a reader's time writers who fear revision fear the labor of actually becoming writers",
+        "Point of view shapes everything the reader knows understands and feels a first person narrator creates intimacy but limits scope third person omniscient offers breadth but risks distance close third person combines the advantages of both and has become the most common choice for contemporary literary fiction",
+        "Dialogue is not transcription of how people actually talk it is a selection of the best most revealing moments of speech real conversation is full of filler repetition and tangent good fictional dialogue is compressed purposeful and always moves character or plot or ideally both forward with every exchange",
+      ],
+      science: [
+        "The scientific method begins with observation and moves through hypothesis formation experimental design data collection analysis and conclusion each step is designed to minimize bias and error and the entire process is subject to peer review and replication to ensure that findings reflect genuine patterns in the natural world",
+        "Quantum mechanics describes the behavior of matter and energy at the scale of atoms and subatomic particles where classical physics breaks down particles exist in superpositions of states until measured and the act of measurement itself disturbs the system making precise simultaneous knowledge of position and momentum impossible",
+        "Evolutionary biology explains the diversity of life on Earth through the mechanism of natural selection organisms with heritable traits that improve their chances of survival and reproduction tend to leave more offspring gradually shifting the distribution of traits in a population over successive generations",
+        "The theory of plate tectonics revolutionized geology by explaining earthquakes volcanoes and mountain building as consequences of the slow movement of large rigid plates that make up the Earth's outer layer these plates move a few centimeters per year driven by convection currents in the semi molten mantle beneath",
+        "Epidemiology is the branch of medicine that studies how diseases are distributed in populations and what factors determine that distribution by tracking who gets sick when where and why epidemiologists can identify risk factors guide public health interventions and evaluate whether those interventions are effective",
+      ],
+    };
+
+    window.TYPING_CONFIG = { defaultDuration: 60, passages: SETS.medical };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".mode-pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".mode-pill").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          window.TYPING_CONFIG.passages = SETS[btn.dataset.prof];
+          if (window.resetTypingTest) window.resetTypingTest();
+        });
+      });
+    });
+  </script>
+  <script src="script.js"></script>
+  <footer id="site-footer"></footer>
+
+  <script src="footer.js"></script>
+
+  <script src="seo.js"></script>
+
+</body>
+</html>
